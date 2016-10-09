@@ -1,9 +1,15 @@
-# this is a Clojure-friendly emacs config
+# This is based on the config from Clojure for the Brave and True, plus a bunch of other packages
+
+___
+
+
+
+## this is a Clojure-friendly emacs config
 
 If you're new to emacs, check out
 [this introductory tutorial](http://www.braveclojure.com/basic-emacs/)!
 
-## Organization
+### Organization
 
 I've tried to separate everything logically and document the purpose
 of every line. [`init.el`](./init.el) acts as a kind of table of
@@ -11,7 +17,7 @@ contents.  It's a good idea to eventually go through `init.el` and the
 files under the `customizations` directory so that you know exactly
 what's going on.
 
-## Supporting CSS, HTML, JS, etc.
+### Supporting CSS, HTML, JS, etc.
 
 Emacs has decent support for CSS, HTML, JS, and many other file types out of the box, but if you want better support, then have a look at [my personal emacs config's init.el](https://github.com/flyingmachine/emacs.d/blob/master/init.el). It's meant to read as a table of contents. The emacs.d as a whole adds the following:
 
