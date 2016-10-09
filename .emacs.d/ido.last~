@@ -1,0 +1,117 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/jsral/Workspace/MediaLibrary/app/views/" . "movies/")
+ ("/home/jsral/Workspace/MediaLibrary/app/" . "views/")
+ ("/home/jsral/Workspace/MediaLibrary/spec/" . "models/")
+ ("/home/jsral/Workspace/MediaLibrary/" . "spec/")
+ ("/home/" . "jsral/")
+ ("/home/jsral/Projects/PythonBootCamp/" . "Flask/")
+ ("/home/jsral/Projects/" . "PyTodo/")
+ ("/home/jsral/Workspace/" . "CrystalScrape/")
+ ("/home/jsral/" . ".emacs.d/")
+ ("/home/jsral/.emacs.d/" . "customizations/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/jsral/.emacs.d/customizations/"
+ "/home/jsral/.emacs.d/vendor/"
+ "/home/jsral/.emacs.d/"
+ "/home/jsral/Workspace/CrystalScrape/"
+ "/home/jsral/.emacs.d/elpa/"
+ "/home/jsral/Workspace/RSScrape/"
+ "/home/jsral/Workspace/MediaLibrary/spec/models/"
+ "/home/jsral/Workspace/MediaLibrary/app/views/movies/"
+ "/home/jsral/Workspace/MediaLibrary/spec/"
+ "/home/jsral/Projects/PyTodo/"
+ "/home/jsral/Projects/TkEdit/"
+ "/home/jsral/Projects/Pyedit/"
+ "/home/jsral/Projects/toga/"
+ "/home/jsral/Projects/PythonBootCamp/Flask/"
+ "/home/jsral/Projects/PythonBootCamp/website/"
+ "/home/jsral/Projects/movietracker/movietracker/"
+ "/home/jsral/Projects/PythonBootCamp/"
+ "/home/jsral/Workspace/Soundcollide/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "editing.el"
+ "emacs-crystal-mode.el"
+ "init.el"
+ "scrape.cr"
+ "misc.el"
+ "crystal-flycheck.el"
+ "scrape.rb"
+ "ui.el"
+ "user_adds_movie_spec.rb"
+ "new.html.erb"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/jsral/.emacs.d/customizations/" (22492 4111 945129 239000) "misc.el" "elisp-editing.el" "setup-js.el" "shell-integration.el" "ui.el" "../" "./" "editing.el~" "navigation.el" "editing.el" "setup-clojure.el" "ui.el~")
+
+ ("/home/jsral/.emacs.d/" (22492 4113 325150 176000) "places" "backups/" "README.md" "init.el" "games/" ".recentf~" "vendor/" "snippets/" "ac-comphist.dat" "../" "eshell/" ".smex-items" "projectile-bookmarks.eld" "customizations/" "ido.last" "ido.last~" "./" "themes/" "init.el~" "elpa/" ".gitignore" "auto-save-list/" ".recentf")
+
+ ("/home/jsral/Workspace/CrystalScrape/" (22491 64393 753513 255000) "../" "./" "scrape.cr")
+
+ ("/home/jsral/Workspace/" (22491 64388 529301 599000) "../" "VocoInventory/" "./" "MediaLibrary/" "Soundcollide/" "RSScrape/" "CrystalScrape/")
+
+ ("/home/jsral/" (22492 3634 873714 438000) ".oh-my-zsh/" ".zsh_history" ".tmux.conf" ".dmrc" ".pyenv/" ".local/" ".bash_logout" ".gconf/" ".zsh-update" "Downloads/" "Qt/" "Documents/" ".nvm/" ".zcompdump-jsral-hp-5.1.1" ".xsession-errors.old" "gnome-terminal-colors-solarized/" "Desktop/" ".rbenv/" ".racket/" ".hyperrogue.log" ".wget-hsts" ".ssh/" ".nano/" ".mozilla/" ".jackdrc" ".xsession-errors" ".bundle/" ".lesshst" "Pictures/" ".viminfo" ".atom/" "Public/" "../" "Templates/" "Projects/" ".emacs.d/" ".profile" "node_modules/" ".python_history" ".log/" ".vim/" "./" ".pki/" ".gnupg/" ".sonic-pi/" ".gnome/" ".gitconfig" ".shoes/" ".lein/" ".pry/" ".zshrc" "examples.desktop" ".kivy/" ".config/" ".cache/" ".bashrc" ".npm/" "Music/" ".gem/" ".vimrc" ".pryrc" ".pry_history" ".anyenv/" "Videos/" ".linuxbrew/" ".oracle_jre_usage/" ".Xauthority" ".hy-history" ".bash_history" ".zcompdump" ".zshrc.pre-oh-my-zsh" ".ICEauthority" "Workspace/" ".sudo_as_admin_successful" ".compiz/")
+
+ ("/home/jsral/.emacs.d/vendor/" (22492 3680 654446 193000) "../" "./" "crystal-flycheck.el" "emacs-crystal-mode.el")
+
+ ("/home/jsral/.emacs.d/elpa/" (22492 3476 399132 107000) "powerline-20160702.1931/" "archives/" "s-20140714.707/" "virtualenv-20140220.1501/" "gnupg/" "undo-tree-20140509.522/" "highlight-indentation-20150307.208/" "rust-mode-20160909.935/" "cl-lib-0.5/" "cider-readme.txt" "web-mode-20160904.1151/" "ctable-20140304.1659/" "python-environment-20150310.153/" "company-20160829.1206/" "flycheck-rust-20160910.956/" "git-rebase-mode-20140605.520/" "projectile-20140716.416/" "flymake-easy-20140818.55/" "clojure-mode-20141120.1410/" "rainbow-mode-0.12/" "../" "inf-ruby-20160617.551/" "queue-0.1.1/" "popup-20160709.729/" "moe-theme-20160907.727/" "python-pep8-1.1/" "company-jedi-20151216.1921/" "company-ghc-20160315.710/" "ido-ubiquitous-20140526.1306/" "exec-path-from-shell-20141212.846/" "./" "elpy-20160903.841/" "company-inf-ruby-20140805.1354/" "neotree-20160831.2119/" "seq-2.16.signed" "monokai-theme-20160814.659/" "ivy-20160912.752/" "yasnippet-20160801.1142/" "dash-20140717.547/" "ruby-end-20141215.423/" "flycheck-pyflakes-20140630.1521/" "crystal-flycheck.el" "goto-chg-20131228.659/" "python-docstring-20160509.315/" "seq-2.16/" "flymake-python-pyflakes-20131127.6/" "pyvenv-20160527.442/" "macrostep-20151213.145/" "epc-20140609.2234/" "let-alist-1.0.4/" "enh-ruby-mode-20160817.1711/" "lush-theme-20141107.806/" "slime-20160831.1520/" "eruby-mode-1.20151111/" "tagedit-20140618.521/" "git-commit-mode-20140605.520/" "robe-20160518.259/" "deferred-20160109.2046/" "magit-20140720.358/" "cider-20141120.1746/" "pylint-20160728.1033/" "ghc-20160808.813/" "flymake-ruby-20121104.1059/" "jedi-core-20160709.722/" "python-mode-20160911.1032/" "ruby-dev-20130811.151/" "doremi-20151231.1255/" "pkg-info-20140610.630/" "rainbow-mode-0.12.signed" "let-alist-1.0.4.signed" "ruby-additional-20160607.157/" "js2-mode-20160826.1908/" "clojure-mode-extra-font-locking-20140613.839/" "emacs-crystal-mode.el" "evil-20160827.1510/" "paredit-20140128.1248/" "python-pylint-1.1/" "haskell-mode-20160827.1033/" "ruby-tools-20151209.815/" "ample-theme-20150814.1101/" "epl-20140620.218/" "ipython-2927/" "find-file-in-project-20160909.1355/" "smex-20140425.1314/" "flycheck-20160912.814/" "rainbow-delimiters-20140713.1131/" "concurrent-20160109.2046/")
+
+ ("/home/jsral/Workspace/RSScrape/" (22490 64044 563774 612000) "scrape.rb" "../" "./")
+
+ ("/home/jsral/.emacs.d/elpa/flycheck-rust-20160910.956/" (22491 61880 86809 366000) "flycheck-rust-autoloads.el" "flycheck-rust-pkg.elc" "../" "flycheck-rust.el" "./" "flycheck-rust-pkg.el" "flycheck-rust.elc")
+
+ ("/home/jsral/.emacs.d/themes/" (21697 44358 0 0) "color-theme-tomorrow.el" "../" "tomorrow-night-blue-theme.el" "./" "zenburn-theme.el" "tomorrow-theme.el" "tomorrow-night-theme.el" "tomorrow-night-bright-theme.el" "tomorrow-night-eighties-theme.el")
+
+ ("/home/jsral/Workspace/MediaLibrary/app/views/movies/" (22489 28734 831536 118000) "../" "new.html.erb" "./" "index.html.erb")
+
+ ("/home/jsral/Workspace/MediaLibrary/app/views/" (22489 28734 831536 118000) "layouts/" "../" "./" "movies/" "devise/")
+
+ ("/home/jsral/Workspace/MediaLibrary/app/" (22489 26307 667946 426000) "views/" "../" "./" "models/" "helpers/" "controllers/" "jobs/" "mailers/" "channels/" "assets/")
+
+ ("/home/jsral/Workspace/MediaLibrary/spec/models/" (22489 29021 851644 535000) "user_adds_movie_spec.rb" "../" "./" "user_visits_homepage_spec.rb" "user_spec.rb" "movie_spec.rb")
+
+ ("/home/jsral/Workspace/MediaLibrary/config/" (22489 28734 831536 118000) "application.rb" "database.yml" "environments/" "initializers/" "../" "cable.yml" "./" "puma.rb" "spring.rb" "routes.rb" "locales/" "secrets.yml" "environment.rb" "boot.rb")
+
+ ("/home/jsral/Workspace/MediaLibrary/spec/helpers/" (22489 28734 831536 118000) "movies_helper_spec.rb" "../" "./")
+
+ ("/home/jsral/Workspace/MediaLibrary/spec/" (22489 28734 831536 118000) "../" "./" "models/" "helpers/" "controllers/" "spec_helper.rb" "rails_helper.rb")
+
+ ("/home/jsral/Workspace/MediaLibrary/" (22489 28734 827536 61000) "README.md" "bin/" "Gemfile" "config/" "vendor/" "Rakefile" "public/" "config.ru" "../" "./" "Gemfile.lock" "lib/" "spec/" "app/" ".git/" ".gitignore" "db/" "tmp/" "log/")
+
+ ("/home/jsral/Projects/PyTodo/" (22489 24956 111273 582000) "../" "./")
+
+ ("/home/jsral/Projects/TkEdit/" (22489 23732 736010 921000) "../" "./" "tkedit.py")
+
+ ("/home/jsral/Projects/" (22489 24956 111273 582000) "PythonBootCamp/" "PyTodo/" "toga/" "gtk/" "../" "./" "TkEdit/" "PyEditQt/" "movietracker/" "Pyedit/")
+
+ ("/home/jsral/Projects/toga/" (22489 16244 52488 255000) "../" "./" "firstapp.py")
+
+ ("/home/jsral/Projects/Pyedit/" (22489 14612 340862 337000) "pyedit.py" "../" "./")
+
+ ("/home/jsral/Projects/PythonBootCamp/website/" (22488 39081 198029 92000) "../" "./")
+
+ ("/home/jsral/Projects/PythonBootCamp/" (22488 39081 198029 92000) "website/" "../" "./" "Flask/" "ex1.py" ".python-version")
+
+ ("/home/jsral/Projects/PythonBootCamp/Flask/" (22488 37810 948754 698000) "../" "hello.py" "./")
+
+ ("/home/jsral/Projects/movietracker/movietracker/" (22487 20910 768520 726000) "urls.py" "__init__.py" "../" "wsgi.py" "./" "settings.py")
+
+ ("/home/jsral/Projects/movietracker/" (22487 20910 768520 726000) "../" "manage.py" "./" "movietracker/")
+
+ ("/home/jsral/Workspace/Soundcollide/" (22459 4303 893652 327000) "README.md" ".editorconfig" "config/" "vendor/" ".jshintrc" "tests/" "public/" "ember-cli-build.js" "../" "package.json" "./" "testem.js" ".bowerrc" ".travis.yml" "app/" ".git/" ".gitignore" "bower.json" ".watchmanconfig" ".ember-cli")
+
+ ("/home/" (22458 65020 164589 581000) "../" "./" "jsral/")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

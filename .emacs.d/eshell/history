@@ -1,0 +1,8 @@
+python tkedit.py 
+python tkedit.py 
+python tkedit.py 
+python --version
+ls
+rm user_adds_movie.rb
+ls
+clear
