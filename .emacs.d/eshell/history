@@ -6,3 +6,13 @@ ls
 rm user_adds_movie.rb
 ls
 clear
+irb
+pry
+gem install pry
+sudo gem install pry
+rbenv
+exit
+ls
+rails s
+clear
+exit

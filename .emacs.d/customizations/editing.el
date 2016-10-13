@@ -17,17 +17,32 @@
 ;; Highlight current line
 (global-hl-line-mode 1)
 
+;; Web Mode
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+;; SCSS Mode
+(autoload 'scss-mode "scss-mode")
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+
 ;; Ruby Stuffs
+(require 'flymake-ruby)
+(require 'ruby-end)
 (add-hook 'ruby-mode-hook
         (lambda ()
           (setq-local company-backends '((company-robe)))))
+(add-hook 'ruby-mode-hook 'flymake-ruby-load)
 
-;; Python Stuffs
-(elpy-enable)
-(defun my/python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
+;; xmpfilter tools to evaluate ruby with # =>
+(require 'rcodetools)
+(define-key ruby-mode-map (kbd "C-c C-c") 'xmp)
 
-(add-hook 'python-mode-hook 'my/python-mode-hook)
 ;; Interactive search key bindings. By default, C-s runs
 ;; isearch-forward, so this swaps the bindings.
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)

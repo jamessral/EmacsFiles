@@ -24,21 +24,24 @@
 ;; for a great explanation of emacs color themes.
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Custom-Themes.html
 ;; for a more technical explanation.
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(add-to-list 'load-path "~/.emacs.d/themes")
-
 ;; Powerline must be added before Moe theme
 (add-to-list 'load-path "~/.emacs.d/elpy/")
 (require 'powerline)
+(powerline-default-theme)
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(add-to-list 'load-path "~/.emacs.d/themes")
+(load-theme 'sanityinc-tomorrow-eighties t)
 
 ;; Moe Theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/moe-theme.el/")
-(add-to-list 'load-path "~/.emacs.d/moe-theme.el/")
-(require 'moe-theme)
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/moe-theme.el/")
+;; (add-to-list 'load-path "~/.emacs.d/moe-theme.el/")
+
+;; (require 'moe-theme)
 
 ;; Moe Dark by default, can be changed during runtime with M-x moe-light
-(powerline-moe-theme)
-(moe-dark)
+;; (powerline-moe-theme)
+;; (moe-dark)
 ;; increase font size for better readability
 (set-face-attribute 'default nil :height 140)
 
