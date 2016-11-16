@@ -25,7 +25,7 @@
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Custom-Themes.html
 ;; for a more technical explanation.
 ;; Powerline must be added before Moe theme
-(add-to-list 'load-path "~/.emacs.d/elpy/")
+;; (add-to-list 'load-path "~/.emacs.d/elpy/")
 (require 'powerline)
 (powerline-default-theme)
 
@@ -43,7 +43,7 @@
 ;; (powerline-moe-theme)
 ;; (moe-dark)
 ;; increase font size for better readability
-(set-face-attribute 'default nil :height 140)
+(set-face-attribute 'default nil :height 130)
 
 ;; Uncomment the lines below by removing semicolons and play with the
 ;; values in order to set the width (in characters wide) and height
