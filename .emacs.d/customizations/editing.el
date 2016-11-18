@@ -32,16 +32,31 @@
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
 ;; Ruby Stuffs
+;; Setup rbenv with emacs
+(add-to-list 'load-path (expand-file-name "/home/jsral/.emacs.d/elpa/rbenv-20141119.2349"))
+(require 'rbenv)
+(global-rbenv-mode)
+
 (require 'flymake-ruby)
 (require 'ruby-end)
 (add-hook 'ruby-mode-hook
         (lambda ()
           (setq-local company-backends '((company-robe)))))
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
-
+(add-hook 'ruby-mode-hook #'enable-paredit-mode)
 ;; xmpfilter tools to evaluate ruby with # =>
 (require 'rcodetools)
 (define-key ruby-mode-map (kbd "C-c C-c") 'xmp)
+
+;; Use CPerl mode instead of default
+(defalias 'perl-mode 'cperl-mode)
+(add-hook 'perl-mode-hook #'enable-paredit-mode)
+
+;; Rust
+(add-hook 'rust-mode-hook #'enable-paredit-mode)
+
+;; Javascript w/ JSX (j2-mode)
+(add-hook 'js2-mode-hook #'enable-paredit-mode)
 
 ;; Interactive search key bindings. By default, C-s runs
 ;; isearch-forward, so this swaps the bindings.
