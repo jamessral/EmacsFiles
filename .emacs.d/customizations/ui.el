@@ -31,7 +31,7 @@
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (add-to-list 'load-path "~/.emacs.d/themes")
-(load-theme 'sanityinc-tomorrow-eighties t)
+(load-theme 'monokai t)
 
 ;; Moe Theme
 ;; (add-to-list 'custom-theme-load-path "~/.emacs.d/moe-theme.el/")
@@ -43,7 +43,8 @@
 ;; (powerline-moe-theme)
 ;; (moe-dark)
 ;; increase font size for better readability
-(set-face-attribute 'default nil :height 130)
+(when (display-graphic-p) (set-face-attribute 'default nil :font "Source Code Pro"))
+(set-face-attribute 'default nil :height 120)
 
 ;; Uncomment the lines below by removing semicolons and play with the
 ;; values in order to set the width (in characters wide) and height

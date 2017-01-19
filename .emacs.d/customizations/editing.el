@@ -17,6 +17,14 @@
 ;; Highlight current line
 (global-hl-line-mode 1)
 
+;; YouCompleteMe for Company mode
+(require 'ycmd)
+(add-hook 'after-init-hook #'global-ycmd-mode)
+
+(require 'company-ycmd)
+(company-ycmd-setup)
+(set-variable 'ycmd-server-command '("python" "/home/jsral/ycmd/ycmd"))
+
 ;; Web Mode
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
@@ -43,17 +51,18 @@
         (lambda ()
           (setq-local company-backends '((company-robe)))))
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
-(add-hook 'ruby-mode-hook #'enable-paredit-mode)
+(add-hook 'ruby-mode-hook 'ruby-end)
+(add-hook 'ruby-mode-hook 'rubocop)
 ;; xmpfilter tools to evaluate ruby with # =>
 (require 'rcodetools)
 (define-key ruby-mode-map (kbd "C-c C-c") 'xmp)
 
 ;; Use CPerl mode instead of default
-(defalias 'perl-mode 'cperl-mode)
-(add-hook 'perl-mode-hook #'enable-paredit-mode)
+;; (defalias 'perl-mode 'cperl-mode)
+;; (add-hook 'perl-mode-hook #'enable-paredit-mode)
 
 ;; Rust
-(add-hook 'rust-mode-hook #'enable-paredit-mode)
+;; (add-hook 'rust-mode-hook #'enable-paredit-mode)
 
 ;; Javascript w/ JSX (j2-mode)
 (add-hook 'js2-mode-hook #'enable-paredit-mode)

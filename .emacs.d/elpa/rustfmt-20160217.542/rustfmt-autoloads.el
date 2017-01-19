@@ -3,8 +3,7 @@
 ;;; Code:
 (add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
-;;;### (autoloads nil "rustfmt" "rustfmt.el" (22574 16148 437888
-;;;;;;  549000))
+;;;### (autoloads nil "rustfmt" "rustfmt.el" (22657 9035 737701 36000))
 ;;; Generated autoloads from rustfmt.el
 
 (autoload 'rustfmt-format-buffer "rustfmt" "\
