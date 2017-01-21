@@ -18,12 +18,12 @@
 (global-hl-line-mode 1)
 
 ;; YouCompleteMe for Company mode
-(require 'ycmd)
-(add-hook 'after-init-hook #'global-ycmd-mode)
+;; (require 'ycmd)
+;; (add-hook 'after-init-hook #'global-ycmd-mode)
 
-(require 'company-ycmd)
-(company-ycmd-setup)
-(set-variable 'ycmd-server-command '("python" "/home/jsral/ycmd/ycmd"))
+;; (require 'company-ycmd)
+;; (company-ycmd-setup)
+;; (set-variable 'ycmd-server-command '("python" "/home/jsral/ycmd/ycmd"))
 
 ;; Web Mode
 (require 'web-mode)
@@ -34,6 +34,8 @@
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
 
 ;; SCSS Mode
 (autoload 'scss-mode "scss-mode")
@@ -51,8 +53,10 @@
         (lambda ()
           (setq-local company-backends '((company-robe)))))
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
-(add-hook 'ruby-mode-hook 'ruby-end)
-(add-hook 'ruby-mode-hook 'rubocop)
+(add-hook 'ruby-mode-hook 'ruby-end-mode)
+(add-hook 'ruby-mode-hook 'rubocop-mode)
+(add-hook 'ruby-mode-hook 'autopair-mode)
+(add-hook 'ruby-mode-hook 'robe-mode)
 ;; xmpfilter tools to evaluate ruby with # =>
 (require 'rcodetools)
 (define-key ruby-mode-map (kbd "C-c C-c") 'xmp)
@@ -65,7 +69,7 @@
 ;; (add-hook 'rust-mode-hook #'enable-paredit-mode)
 
 ;; Javascript w/ JSX (j2-mode)
-(add-hook 'js2-mode-hook #'enable-paredit-mode)
+(add-hook 'js2-mode-hook 'autopair-mode)
 
 ;; Interactive search key bindings. By default, C-s runs
 ;; isearch-forward, so this swaps the bindings.

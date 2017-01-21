@@ -44,7 +44,7 @@
 ;; (moe-dark)
 ;; increase font size for better readability
 (when (display-graphic-p) (set-face-attribute 'default nil :font "Source Code Pro"))
-(set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :height 140)
 
 ;; Uncomment the lines below by removing semicolons and play with the
 ;; values in order to set the width (in characters wide) and height
