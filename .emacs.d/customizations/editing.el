@@ -17,6 +17,51 @@
 ;; Highlight current line
 (global-hl-line-mode 1)
 
+
+;; JSX w/ Flow
+(require 'company)
+(require 'web-mode)
+(require 'flycheck)
+(require 'flycheck-flow)
+
+;; flow auto complete
+;; skip this if you don't use company-mode
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-flow))
+
+;; add eslint and flow checkers to flycheck
+(flycheck-add-mode 'javascript-eslint 'web-mode)
+(flycheck-add-mode 'javascript-flow 'web-mode)
+
+;;disable jshint since we prefer eslint checking
+(setq-default flycheck-disabled-checkers
+  (append flycheck-disabled-checkers
+    '(javascript-jshint)))
+
+(defun jsWithEslint ()
+  "eslint for js files"
+  (interactive)
+  (web-mode)
+  (web-mode-set-content-type "jsx")
+  (flycheck-disable-checker 'javascript-flow)
+  (flycheck-select-checker 'javascript-eslint)
+  (flycheck-mode))
+
+(defun jsWithEslintFlow ()
+  "flow and eslint for js files"
+  (interactive)
+  (web-mode)
+  (web-mode-set-content-type "jsx")
+  (flycheck-select-checker 'javascript-eslint)
+  (flycheck-add-next-checker 'javascript-eslint 'javascript-flow)
+  (flycheck-mode))
+
+;; set key shortcuts if you want
+;; (global-set-key (kbd "C-c j") 'jsWithEslint)
+;; (global-set-key (kbd "C-c f") 'jsWithEslintFlow)
+
+(add-to-list 'auto-mode-alist '("\\.js\\'"      . jsWithEslint))
+(add-to-list 'magic-mode-alist '("/\\* @flow \\*/" . jsWithEslintFlow))
 ;; YouCompleteMe for Company mode
 ;; (require 'ycmd)
 ;; (add-hook 'after-init-hook #'global-ycmd-mode)
@@ -36,6 +81,7 @@
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
+(add-hook 'web-mode-hook 'autopair-mode)
 
 ;; SCSS Mode
 (autoload 'scss-mode "scss-mode")
@@ -53,7 +99,7 @@
         (lambda ()
           (setq-local company-backends '((company-robe)))))
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
-(add-hook 'ruby-mode-hook 'ruby-end-mode)
+(add-hook 'ruby-mode-hook 'ruby-end)
 (add-hook 'ruby-mode-hook 'rubocop-mode)
 (add-hook 'ruby-mode-hook 'autopair-mode)
 (add-hook 'ruby-mode-hook 'robe-mode)
@@ -65,11 +111,26 @@
 ;; (defalias 'perl-mode 'cperl-mode)
 ;; (add-hook 'perl-mode-hook #'enable-paredit-mode)
 
+;; Go Stuffs
+(defun my-go-mode-hook ()
+  ; Use goimports instead of go-fmt
+  (setq gofmt-command "goimports")
+  ; Call Gofmt before saving
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  ; Customize compile command to run go build
+  (if (not (string-match "go" compile-command))
+      (set (make-local-variable 'compile-command)
+           "go generate && go build -v && go test -v && go vet"))
+  ; Go oracle
+  (load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
+  ; Godef jump key binding
+  (local-set-key (kbd "M-.") 'godef-jump)
+  (local-set-key (kbd "M-*") 'pop-tag-mark)
+)
+(add-hook 'go-mode-hook 'my-go-mode-hook)
+
 ;; Rust
 ;; (add-hook 'rust-mode-hook #'enable-paredit-mode)
-
-;; Javascript w/ JSX (j2-mode)
-(add-hook 'js2-mode-hook 'autopair-mode)
 
 ;; Interactive search key bindings. By default, C-s runs
 ;; isearch-forward, so this swaps the bindings.
