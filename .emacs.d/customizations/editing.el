@@ -26,8 +26,9 @@
 
 ;; flow auto complete
 ;; skip this if you don't use company-mode
-(eval-after-load 'company
-  '(add-to-list 'company-backends 'company-flow))
+(with-eval-after-load 'company
+  '(add-to-list 'company-backends 'company-flow)
+  '(add-to-list 'company-backends 'company-tern))
 
 ;; add eslint and flow checkers to flycheck
 (flycheck-add-mode 'javascript-eslint 'web-mode)
@@ -42,7 +43,8 @@
   "eslint for js files"
   (interactive)
   (web-mode)
-  (web-mode-set-content-type "jsx")
+  (autopair-mode)
+  (company-mode)
   (flycheck-disable-checker 'javascript-flow)
   (flycheck-select-checker 'javascript-eslint)
   (flycheck-mode))
@@ -60,15 +62,13 @@
 ;; (global-set-key (kbd "C-c j") 'jsWithEslint)
 ;; (global-set-key (kbd "C-c f") 'jsWithEslintFlow)
 
-(add-to-list 'auto-mode-alist '("\\.js\\'"      . jsWithEslint))
-(add-to-list 'magic-mode-alist '("/\\* @flow \\*/" . jsWithEslintFlow))
 ;; YouCompleteMe for Company mode
-;; (require 'ycmd)
-;; (add-hook 'after-init-hook #'global-ycmd-mode)
+(require 'ycmd)
+(add-hook 'after-init-hook #'global-ycmd-mode)
 
-;; (require 'company-ycmd)
-;; (company-ycmd-setup)
-;; (set-variable 'ycmd-server-command '("python" "/home/jsral/ycmd/ycmd"))
+(require 'company-ycmd)
+(company-ycmd-setup)
+(set-variable 'ycmd-server-command '("python" "/home/jsral/ycmd/ycmd"))
 
 ;; Web Mode
 (require 'web-mode)
@@ -79,9 +79,10 @@
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
-(add-hook 'web-mode-hook 'autopair-mode)
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsWithEslint))
+(add-to-list 'magic-mode-alist '("/\\* @flow \\*/" . jsWithEslintFlow))
+
 
 ;; SCSS Mode
 (autoload 'scss-mode "scss-mode")
