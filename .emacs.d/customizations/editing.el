@@ -47,14 +47,14 @@
   (flycheck-select-checker 'javascript-eslint)
   (flycheck-mode))
 
-(defun jsWithEslintFlow ()
-  "flow and eslint for js files"
-  (interactive)
-  (web-mode)
-  (web-mode-set-content-type "jsx")
-  (flycheck-select-checker 'javascript-eslint)
-  (flycheck-add-next-checker 'javascript-eslint 'javascript-flow)
-  (flycheck-mode))
+;;(defun jsWithEslintFlow ()
+;;  "flow and eslint for js files"
+;;  (interactive)
+;;  (web-mode)
+;;  (web-mode-set-content-type "jsx")
+;;  (flycheck-select-checker 'javascript-eslint)
+;;  (flycheck-add-next-checker 'javascript-eslint 'javascript-flow)
+;;  (flycheck-mode))
 
 ;; set key shortcuts if you want
 ;; (global-set-key (kbd "C-c j") 'jsWithEslint)
