@@ -26,15 +26,15 @@
 
 (evil-leader/set-leader ",")
 (evil-leader/set-key
-  "t" 'ffip-find-files
+  "t" 'ffip
   "c" 'evil-window-delete
   "gs" 'magit-status
   "ga" 'magit-stage-all
   "gc" 'magit-commit
-  "n" 'nerdtree-toggle
+  "n" 'neotree-toggle
   "s" 'evil-window-split
   "v" 'evil-window-vsplit
-  ",," 'evilnc-comment-or-uncomment-lines
+  "," 'evilnc-comment-or-uncomment-lines
 )
 
 (define-key evil-normal-state-local-map (kbd "C-j") 'evil-window-down)
