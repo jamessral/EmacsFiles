@@ -16,3 +16,6 @@ ls
 rails s
 clear
 exit
+gs
+git status
+git fetch && git checkout feature/USDEV-759-previewplay-remove-section-typ 

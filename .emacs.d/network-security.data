@@ -1,3 +1,4 @@
 (
+ (:id "sha1:ee8da9f4c0874918c2ff59a1a37b45d6683c83c1" :fingerprint "sha1:ab:4c:d4:d9:5e:48:7b:a9:d7:7b:be:b7:3d:3f:78:7d:f3:2b:1f:2b" :host "www.understorydev.com:443" :conditions (:insecure :unknown-ca :invalid))
  (:id "sha1:85457c729378cc93c732b6a3941c8e4f9c2e60f3" :fingerprint "sha1:ab:a6:d7:6a:b3:d3:63:fa:19:0d:65:41:60:23:6e:ef:d3:2a:46:dc" :host "marmalade-repo.org:443" :conditions (:insecure :unknown-ca :invalid))
 )

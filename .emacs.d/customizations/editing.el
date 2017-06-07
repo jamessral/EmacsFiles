@@ -17,74 +17,51 @@
 ;; Highlight current line
 (global-hl-line-mode 1)
 
-;; Evil Mode Config
-(require 'evil-nerd-commenter-sdk)
-(evilnc-default-hotkeys)
-(require 'evil)
-(require 'evil-surround)
-(global-evil-surround-mode 1)
-
-(evil-leader/set-leader ",")
-(evil-leader/set-key
-  "t" 'ffip
-  "c" 'evil-window-delete
-  "gs" 'magit-status
-  "ga" 'magit-stage-all
-  "gc" 'magit-commit
-  "n" 'neotree-toggle
-  "s" 'evil-window-split
-  "v" 'evil-window-vsplit
-  "," 'evilnc-comment-or-uncomment-lines
-)
-
-(define-key evil-normal-state-local-map (kbd "C-j") 'evil-window-down)
-(define-key evil-normal-state-local-map (kbd "C-k") 'evil-window-up)
-(define-key evil-normal-state-local-map (kbd "C-h") 'evil-window-left)
-(define-key evil-normal-state-local-map (kbd "C-l") 'evil-window-right)
+(autopair-global-mode)
 
 ;; JSX w/ Flow
 (require 'company)
 (require 'web-mode)
-(require 'flycheck)
-(require 'flycheck-flow)
 
 ;; flow auto complete
 ;; skip this if you don't use company-mode
 (with-eval-after-load 'company
-  '(add-to-list 'company-backends 'company-flow)
+  ;; '(add-to-list 'company-backends 'company-flow)
   '(add-to-list 'company-backends 'company-tern))
 
-;; add eslint and flow checkers to flycheck
-(flycheck-add-mode 'javascript-eslint 'web-mode)
-(flycheck-add-mode 'javascript-flow 'web-mode)
 
-;;disable jshint since we prefer eslint checking
-(setq-default flycheck-disabled-checkers
-  (append flycheck-disabled-checkers
-    '(javascript-jshint)))
+;; add eslint and flow checkers to flycheck
+(require 'flycheck)
+
+;; turn on flychecking globally
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(flycheck-add-mode 'javascript-eslint 'web-mode)
+;;(flycheck-add-mode 'javascript-flow 'web-mode)
+
+;;use local eslint from node_modules before global
+;;http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
+(defun my/use-eslint-from-node-modules ()
+  (let* ((root (locate-dominating-file
+
+                "node_modules"))
+         (eslint (and root
+                      (expand-file-name "node_modules/eslint/bin/eslint.js"
+                                        root))))
+    (when (and eslint (file-executable-p eslint))
+      (setq-local flycheck-javascript-eslint-executable eslint))))
+(add-hook 'flycheck-add-hook #'my/use-eslint-from-node-modules)
 
 (defun jsWithEslint ()
-  "eslint for js files"
+"eslint for js files"
   (interactive)
   (web-mode)
   (autopair-mode)
   (company-mode)
-  (flycheck-disable-checker 'javascript-flow)
   (flycheck-select-checker 'javascript-eslint)
   (flycheck-mode))
 
-;;(defun jsWithEslintFlow ()
-;;  "flow and eslint for js files"
-;;  (interactive)
-;;  (web-mode)
-;;  (web-mode-set-content-type "jsx")
-;;  (flycheck-select-checker 'javascript-eslint)
-;;  (flycheck-add-next-checker 'javascript-eslint 'javascript-flow)
-;;  (flycheck-mode))
-
-;; set key shortcuts if you want
-;; (global-set-key (kbd "C-c j") 'jsWithEslint)
-;; (global-set-key (kbd "C-c f") 'jsWithEslintFlow)
+;;set key shortcuts if you want
+(global-set-key (kbd "C-c j") 'jsWithEslint)
 
 ;; YouCompleteMe for Company mode
 (require 'ycmd)
@@ -92,7 +69,7 @@
 
 (require 'company-ycmd)
 (company-ycmd-setup)
-(set-variable 'ycmd-server-command '("python" "/home/jsral/ycmd/ycmd"))
+(set-variable 'ycmd-server-command '("python" "/Users/jamessral/ycmd/ycmd"))
 
 ;; Web Mode
 (require 'web-mode)
@@ -111,58 +88,41 @@
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . jsWithEslint))
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsWithEslint))
-(add-to-list 'magic-mode-alist '("/\\* @flow \\*/" . jsWithEslintFlow))
 (add-hook 'web-mode-hook (setq web-mode-markup-indent-offset 2))
 (add-hook 'web-mode-hook (setq web-mode-code-indent-offset 2))
 (add-hook 'web-mode-hook (setq web-mode-css-indent-offset 2))
+(add-hook 'web-mode-hook #'rainbow-delimiters-mode)
+
+;; Rainbow Mode hooks
+(add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'racket-mode-hook #'rainbow-delimiters-mode)
+
 
 ;; SCSS Mode
-(autoload 'scss-mode "scss-mode")
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
-
+;; (autoload 'scss-mode "scss-mode")
+;; (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 ;; Ruby Stuffs
-;; Setup rbenv with emacs
-(add-to-list 'load-path (expand-file-name "/home/jsral/.emacs.d/elpa/rbenv-20141119.2349"))
-(require 'rbenv)
-(global-rbenv-mode)
-
-(require 'flymake-ruby)
-(require 'ruby-end)
-(add-hook 'ruby-mode-hook
-        (lambda ()
-          (setq-local company-backends '((company-robe)))))
-(add-hook 'ruby-mode-hook 'flymake-ruby-load)
-(add-hook 'ruby-mode-hook 'ruby-end)
-(add-hook 'ruby-mode-hook 'rubocop-mode)
-(add-hook 'ruby-mode-hook 'autopair-mode)
-(add-hook 'ruby-mode-hook 'robe-mode)
-;; xmpfilter tools to evaluate ruby with # =>
-(require 'rcodetools)
-(define-key ruby-mode-map (kbd "C-c C-c") 'xmp)
-
-;; Use CPerl mode instead of default
-;; (defalias 'perl-mode 'cperl-mode)
-;; (add-hook 'perl-mode-hook #'enable-paredit-mode)
 
 ;; Go Stuffs
-(defun my-go-mode-hook ()
-  ; Use goimports instead of go-fmt
-  (setq gofmt-command "goimports")
-  ; Call Gofmt before saving
-  (add-hook 'before-save-hook 'gofmt-before-save)
-  ; Customize compile command to run go build
- (if (not (string-match "go" compile-command))
-      (set (make-local-variable 'compile-command)
-           "go generate && go build -v && go test -v && go vet"))
-  ; Go oracle
-  (load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
-  ; Godef jump key binding
-  (local-set-key (kbd "M-.") 'godef-jump)
-  (local-set-key (kbd "M-*") 'pop-tag-mark)
-)
-(add-hook 'go-mode-hook 'my-go-mode-hook)
+;; (defun my-go-mode-hook ()
+;;   ; Use goimports instead of go-fmt
+;;   (setq gofmt-command "goimports")
+;;   ; Call Gofmt before saving
+;;   (add-hook 'before-save-hook 'gofmt-before-save)
+;;   ; Customize compile command to run go build
+;;  (if (not (string-match "go" compile-command))
+;;       (set (make-local-variable 'compile-command)
+;;            "go generate && go build -v && go test -v && go vet"))
+;;   ; Go oracle
+;;   (load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
+;;   ; Godef jump key binding
+;;   (local-set-key (kbd "M-.") 'godef-jump)
+;;   (local-set-key (kbd "M-*") 'pop-tag-mark)
+;; )
+;; (add-hook 'go-mode-hook 'my-go-mode-hook)
 
 ;; Rust
 ;; (add-hook 'rust-mode-hook #'enable-paredit-mode)
@@ -202,9 +162,6 @@
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 (global-set-key (kbd "C-;") 'toggle-comment-on-line)
 
-;; yay rainbows!
-(global-rainbow-delimiters-mode t)
-
 ;; use 2 spaces for tabs
 (defun die-tabs ()
   (interactive)
@@ -221,27 +178,6 @@
     (quit nil)))
 
 (setq electric-indent-mode nil)
-
-(defun neotree-project-dir ()
-  "Open NeoTree using the git root"
-  (interactive)
-  (let ((project-dir (projectile-project-root))
-        (file-name (buffer-file-name)))
-    (if project-dir
-        (if (neotree-toggle)
-            (progn
-              (neotree-dir project-dir)
-              (neotree-find file-name)))
-      (message "Could not find the git root."))))
-
-(global-set-key [f8] 'neotree-project-dir)
-
-(add-hook 'neotree-mode-hook
-          (lambda ()
-            (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-            (define-key evil-normal-state-local-map (kbd "ESC") 'neotree-enter)
-            (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-            (define-key evil-normal-state-local-map (kbd "o") 'neotree-enter)))
 
 (defun toggle-window-split ()
   (interactive)
@@ -268,4 +204,5 @@
 	  (select-window first-win)
 	  (if this-win-2nd (other-window 1))))))
 
-(define-key ctl-x-4-map "t" 'toggle-window-split)
+(define-key ctl-x-4-map "t" 'toggle-window-split
+)

@@ -3,7 +3,7 @@
 ;;; Code:
 (add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil "ocp-indent" "ocp-indent.el" (22834 49791 0
+;;;### (autoloads nil "ocp-indent" "ocp-indent.el" (22836 48423 0
 ;;;;;;  0))
 ;;; Generated autoloads from ocp-indent.el
 

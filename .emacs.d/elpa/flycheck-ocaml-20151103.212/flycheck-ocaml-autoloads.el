@@ -3,8 +3,8 @@
 ;;; Code:
 (add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil "flycheck-ocaml" "flycheck-ocaml.el" (22834
-;;;;;;  49781 0 0))
+;;;### (autoloads nil "flycheck-ocaml" "flycheck-ocaml.el" (22836
+;;;;;;  50582 0 0))
 ;;; Generated autoloads from flycheck-ocaml.el
 
 (autoload 'flycheck-ocaml-setup "flycheck-ocaml" "\
