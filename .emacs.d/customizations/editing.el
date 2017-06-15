@@ -38,24 +38,26 @@
 (flycheck-add-mode 'javascript-eslint 'web-mode)
 ;;(flycheck-add-mode 'javascript-flow 'web-mode)
 
-;;use local eslint from node_modules before global
-;;http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
+;; use local eslint from node_modules before global
+;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
 (defun my/use-eslint-from-node-modules ()
+  "Prefer local eslintrc."
   (let* ((root (locate-dominating-file
-
+                (or (buffer-file-name) default-directory)
                 "node_modules"))
          (eslint (and root
                       (expand-file-name "node_modules/eslint/bin/eslint.js"
                                         root))))
     (when (and eslint (file-executable-p eslint))
       (setq-local flycheck-javascript-eslint-executable eslint))))
-(add-hook 'flycheck-add-hook #'my/use-eslint-from-node-modules)
+(add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
 
 (defun jsWithEslint ()
-"eslint for js files"
+  "Eslint for js files."
   (interactive)
   (web-mode)
   (autopair-mode)
+  (web-mode-set-content-type "jsx")
   (company-mode)
   (flycheck-select-checker 'javascript-eslint)
   (flycheck-mode))
