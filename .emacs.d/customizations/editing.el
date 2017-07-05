@@ -38,32 +38,33 @@
 (flycheck-add-mode 'javascript-eslint 'web-mode)
 ;;(flycheck-add-mode 'javascript-flow 'web-mode)
 
-;; use local eslint from node_modules before global
-;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
-(defun my/use-eslint-from-node-modules ()
-  "Prefer local eslintrc."
+(defun spacemacs//setup-react-mode ()
+  "Adjust web-mode to accommodate react-mode"
+  (emmet-mode 0)
+  ;; See https://github.com/CestDiego/emmet-mode/commit/3f2904196e856d31b9c95794d2682c4c7365db23
+  (setq-local emmet-expand-jsx-className? t)
+  ;; Enable js-mode snippets
+  (yas-activate-extra-mode 'js-mode)
+  ;; Force jsx content type
+  (web-mode-set-content-type "jsx")
+  ;; Don't auto-quote attribute values
+  (setq-local web-mode-enable-auto-quoting nil))
+
+
+;; flycheck
+
+(defun spacemacs//react-use-eslint-from-node-modules ()
   (let* ((root (locate-dominating-file
                 (or (buffer-file-name) default-directory)
                 "node_modules"))
-         (eslint (and root
-                      (expand-file-name "node_modules/eslint/bin/eslint.js"
-                                        root))))
-    (when (and eslint (file-executable-p eslint))
-      (setq-local flycheck-javascript-eslint-executable eslint))))
-(add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+         (global-eslint (executable-find "eslint"))
+         (local-eslint (expand-file-name "node_modules/.bin/eslint"
+                                         root))
+         (eslint (if (file-executable-p local-eslint)
+                     local-eslint
+                   global-eslint)))
+    (setq-local flycheck-javascript-eslint-executable eslint)))
 
-(defun jsWithEslint ()
-  "Eslint for js files."
-  (interactive)
-  (web-mode)
-  (autopair-mode)
-  (web-mode-set-content-type "jsx")
-  (company-mode)
-  (flycheck-select-checker 'javascript-eslint)
-  (flycheck-mode))
-
-;;set key shortcuts if you want
-(global-set-key (kbd "C-c j") 'jsWithEslint)
 
 ;; YouCompleteMe for Company mode
 (require 'ycmd)
@@ -83,6 +84,14 @@
       ad-do-it)
     ad-do-it))
 
+(defun myreact-mode ()
+  "Borrowed react mode from spacemacs."
+  (interactive)
+  (web-mode)
+  (spacemacs//setup-react-mode)
+  (spacemacs//react-user-eslint-from-node-modules))
+
+
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
@@ -91,8 +100,8 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.js\\'" . jsWithEslint))
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsWithEslint))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . myreact-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . myreact-mode))
 (add-hook 'web-mode-hook (setq web-mode-markup-indent-offset 2))
 (add-hook 'web-mode-hook (setq web-mode-code-indent-offset 2))
 (add-hook 'web-mode-hook (setq web-mode-css-indent-offset 2))
@@ -107,6 +116,14 @@
 ;; (autoload 'scss-mode "scss-mode")
 ;; (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 ;; Ruby Stuffs
+
+
+;; Python
+(elpy-enable)
+(defun my/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+
+(add-hook 'python-mode-hook 'my/python-mode-hook)
 
 ;; Go Stuffs
 ;; (defun my-go-mode-hook ()

@@ -55,6 +55,7 @@
     omnisharp
     ruby-mode
     js2-mode
+    multi-term
     evil
     merlin
     ocp-indent
@@ -148,9 +149,10 @@
 
 ;; For editing lisps
 (load "elisp-editing.el")
-
+(window-numbering-mode)
 ;; Langauage-specific
 (load "setup-clojure.el")
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -165,7 +167,7 @@
  '(magit-use-overlays nil)
  '(package-selected-packages
    (quote
-    (elm-mode doom-themes slime use-package fiplr flycheck-rust flycheck-ycmd flycheck-ocaml flycheck-clojure markdown-mode+ god-mode color-theme-sanityinc-solarized evil-magit evil-surround evil-nerd-commenter evil-leader haskell-mode rjsx-mode company-tern relative-line-numbers clojurescript-mode racket-mode helm omnisharp haml-mode company-flow eslint-fix autopair yasnippet web-mode tagedit starter-kit-ruby scss-mode rustfmt rust-mode ruby-tools ruby-end ruby-dev ruby-block ruby-additional rubocop rsense robe rbenv rainbow-mode rainbow-delimiters projectile powerline popup neotree monokai-theme macrostep jsx-mode js2-mode javascript highlight-indentation go-mode exec-path-from-shell evil epc enh-ruby-mode doremi company-ycmd company-inf-ruby color-theme-solarized color-theme-sanityinc-tomorrow color-theme-monokai clojure-mode-extra-font-locking cider))))
+    (window-numbering elpy multi-term elm-mode doom-themes slime use-package fiplr flycheck-rust flycheck-ycmd flycheck-ocaml flycheck-clojure markdown-mode+ god-mode color-theme-sanityinc-solarized evil-magit evil-surround evil-nerd-commenter evil-leader haskell-mode rjsx-mode company-tern relative-line-numbers clojurescript-mode racket-mode helm omnisharp haml-mode company-flow eslint-fix autopair yasnippet web-mode tagedit starter-kit-ruby scss-mode rustfmt rust-mode ruby-tools ruby-end ruby-dev ruby-block ruby-additional rubocop rsense robe rbenv rainbow-mode rainbow-delimiters projectile powerline popup neotree monokai-theme macrostep jsx-mode js2-mode javascript highlight-indentation go-mode exec-path-from-shell evil epc enh-ruby-mode doremi company-ycmd company-inf-ruby color-theme-solarized color-theme-sanityinc-tomorrow color-theme-monokai clojure-mode-extra-font-locking cider))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
