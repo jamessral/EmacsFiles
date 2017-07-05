@@ -11,6 +11,10 @@
         try-complete-lisp-symbol-partially
         try-complete-lisp-symbol))
 
+;; Mac key admustments
+(setq mac-option-modifier 'control)
+(setq mac-command-modifier 'meta)
+
 ;; Highlights matching parenthesis
 (show-paren-mode 1)
 
