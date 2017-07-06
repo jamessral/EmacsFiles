@@ -36,38 +36,61 @@
 
 ;; add eslint and flow checkers to flycheck
 (require 'flycheck)
-
 ;; turn on flychecking globally
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; disable jshint since we prefer eslint checking
+(setq-default flycheck-disabled-checkers
+  (append flycheck-disabled-checkers
+    '(javascript-jshint)))
+
+;; use eslint with web-mode for jsx files
+(flycheck-add-mode 'javascript-eslint 'web-mode)
+
+;; customize flycheck temp file prefix
+(setq-default flycheck-temp-prefix ".flycheck")
+
+;; disable json-jsonlist checking for json files
+(setq-default flycheck-disabled-checkers
+  (append flycheck-disabled-checkers
+    '(json-jsonlist)))
+
+;; https://github.com/purcell/exec-path-from-shell
+;; only need exec-path-from-shell on OSX
+;; this hopefully sets up path and other vars better
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
 (flycheck-add-mode 'javascript-eslint 'web-mode)
 ;;(flycheck-add-mode 'javascript-flow 'web-mode)
 
-(defun spacemacs//setup-react-mode ()
-  "Adjust web-mode to accommodate react-mode"
-  (emmet-mode 0)
-  ;; See https://github.com/CestDiego/emmet-mode/commit/3f2904196e856d31b9c95794d2682c4c7365db23
-  (setq-local emmet-expand-jsx-className? t)
-  ;; Enable js-mode snippets
-  (yas-activate-extra-mode 'js-mode)
-  ;; Force jsx content type
-  (web-mode-set-content-type "jsx")
-  ;; Don't auto-quote attribute values
-  (setq-local web-mode-enable-auto-quoting nil))
-
-
-;; flycheck
-
-(defun spacemacs//react-use-eslint-from-node-modules ()
+;; use local eslint from node_modules before global
+;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
+(defun my/use-eslint-from-node-modules ()
   (let* ((root (locate-dominating-file
                 (or (buffer-file-name) default-directory)
                 "node_modules"))
-         (global-eslint (executable-find "eslint"))
-         (local-eslint (expand-file-name "node_modules/.bin/eslint"
-                                         root))
-         (eslint (if (file-executable-p local-eslint)
-                     local-eslint
-                   global-eslint)))
-    (setq-local flycheck-javascript-eslint-executable eslint)))
+         (eslint (and root
+                      (expand-file-name "node_modules/eslint/bin/eslint.js"
+                                        root))))
+    (when (and eslint (file-executable-p eslint))
+      (setq-local flycheck-javascript-eslint-executable eslint))))
+
+(defun codefalling//reset-eslint-rc ()
+    (let ((rc-path (if (projectile-project-p)
+                       (concat (projectile-project-root) ".eslintrc"))))
+      (if (file-exists-p rc-path)
+          (progn
+            (message rc-path)
+          (setq flycheck-eslintrc rc-path)))))
+
+(add-hook 'flycheck-mode-hook 'codefalling//reset-eslint-rc)
+(add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+
+
+;; use web-mode for .jsx files
+(add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js$" . web-mode))
 
 
 ;; YouCompleteMe for Company mode
@@ -88,14 +111,6 @@
       ad-do-it)
     ad-do-it))
 
-(defun myreact-mode ()
-  "Borrowed react mode from spacemacs."
-  (interactive)
-  (web-mode)
-  (spacemacs//setup-react-mode)
-  (spacemacs//react-user-eslint-from-node-modules))
-
-
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
@@ -103,9 +118,7 @@
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.js\\'" . myreact-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . myreact-mode))
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 (add-hook 'web-mode-hook (setq web-mode-markup-indent-offset 2))
 (add-hook 'web-mode-hook (setq web-mode-code-indent-offset 2))
 (add-hook 'web-mode-hook (setq web-mode-css-indent-offset 2))

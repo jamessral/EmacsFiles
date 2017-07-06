@@ -52,7 +52,7 @@
 ;; (setq initial-frame-alist '((top . 0) (left . 0) (width . 177) (height . 53)))
 
 ;; These settings relate to how emacs interacts with your operating system
-(setq ;; makes killing/yanking interact with the clipboard
+ (setq ;; makes killing/yanking interact with the clipboard
       x-select-enable-clipboard t
 
       ;; I'm actually not sure what this does but it's recommended?

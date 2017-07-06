@@ -19,3 +19,6 @@ exit
 gs
 git status
 git fetch && git checkout feature/USDEV-759-previewplay-remove-section-typ 
+cd ~
+gem install scss_lint_reporter_checkstyle
+exit
