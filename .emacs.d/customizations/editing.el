@@ -34,18 +34,10 @@
   '(add-to-list 'company-backends 'company-tern))
 
 
-;; add eslint and flow checkers to flycheck
-(require 'flycheck)
-;; turn on flychecking globally
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
 ;; disable jshint since we prefer eslint checking
 (setq-default flycheck-disabled-checkers
   (append flycheck-disabled-checkers
     '(javascript-jshint)))
-
-;; use eslint with web-mode for jsx files
-(flycheck-add-mode 'javascript-eslint 'web-mode)
 
 ;; customize flycheck temp file prefix
 (setq-default flycheck-temp-prefix ".flycheck")
@@ -76,7 +68,7 @@
     (when (and eslint (file-executable-p eslint))
       (setq-local flycheck-javascript-eslint-executable eslint))))
 
-(defun codefalling//reset-eslint-rc ()
+(defun codefalling/reset-eslint-rc ()
     (let ((rc-path (if (projectile-project-p)
                        (concat (projectile-project-root) ".eslintrc"))))
       (if (file-exists-p rc-path)
@@ -84,32 +76,26 @@
             (message rc-path)
           (setq flycheck-eslintrc rc-path)))))
 
-(add-hook 'flycheck-mode-hook 'codefalling//reset-eslint-rc)
-(add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
-
-
-;; use web-mode for .jsx files
-(add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.js$" . web-mode))
+(add-hook 'flycheck-mode-hook 'my/use-eslint-from-node-modules)
+;;(add-hook 'flycheck-mode-hook 'codefalling/reset-eslint-rc)
 
 
 ;; YouCompleteMe for Company mode
-(require 'ycmd)
-(add-hook 'after-init-hook #'global-ycmd-mode)
+;;(require 'ycmd)
+;;(add-hook 'after-init-hook #'global-ycmd-mode)
 
-(require 'company-ycmd)
-(company-ycmd-setup)
-(set-variable 'ycmd-server-command '("python" "/Users/jamessral/ycmd/ycmd"))
+;;(require 'company-ycmd)
+;;(company-ycmd-setup)
+;;(set-variable 'ycmd-server-command '("python" "/Users/jamessral/ycmd/ycmd"))
 
 ;; Web Mode
-(require 'web-mode)
 ;; for better jsx syntax-highlighting in web-mode
 ;; - courtesy of Patrick @halbtuerke
-(defadvice web-mode-highlight-part (around tweak-jsx activate)
-  (if (equal web-mode-content-type "jsx")
-    (let ((web-mode-enable-part-face nil))
-      ad-do-it)
-    ad-do-it))
+;; (defadvice web-mode-highlight-part (around tweak-jsx activate)
+;;   (if (equal web-mode-content-type "jsx")
+;;     (let ((web-mode-enable-part-face nil))
+;;       ad-do-it)
+;;     ad-do-it))
 
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
@@ -123,6 +109,20 @@
 (add-hook 'web-mode-hook (setq web-mode-code-indent-offset 2))
 (add-hook 'web-mode-hook (setq web-mode-css-indent-offset 2))
 (add-hook 'web-mode-hook #'rainbow-delimiters-mode)
+
+;; always use jsx mode for JS
+(add-hook 'web-mode-hook
+      (lambda ()
+        ;; short circuit js mode and just do everything in jsx-mode
+        (if (equal web-mode-content-type "javascript")
+            (web-mode-set-content-type "jsx")
+          (message "now set to: %s" web-mode-content-type))))
+
+;; use web-mode for .jsx files
+(add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js$" . web-mode))
+
+
 
 ;; Rainbow Mode hooks
 (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)

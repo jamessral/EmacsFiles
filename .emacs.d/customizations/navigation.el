@@ -50,6 +50,9 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (global-set-key (kbd "C-x f") 'fiplr-find-file)
+
+(setq fiplr-ignored-globs '((directories (".git" ".svn" "node_modules" ".vscode"))
+                            (files ("*.jpg" "*.png" "*.zip" "*~" "*.log" ".project"))))
 ;; Enhances M-x to allow easier execution of commands. Provides
 ;; a filterable list of possible commands in the minibuffer
 ;; http://www.emacswiki.org/emacs/Smex
