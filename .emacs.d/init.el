@@ -138,10 +138,13 @@
 
 ;; These customizations make editing a bit nicer.
 ;; (load "vim.el")
+<<<<<<< HEAD
 
 ;; Show tabs as 4 spaces
 (setq tab-width 4)
 
+=======
+>>>>>>> af717ac1287fe70c8bb00a8e2683f9181c587d16
 (load "editing.el")
 
 ;; These customizations make it easier for you to navigate files,
@@ -183,7 +186,11 @@
  '(magit-use-overlays nil)
  '(package-selected-packages
    (quote
+<<<<<<< HEAD
     (magit gited git company-go go-autocomplete flymake-rust flymake-lua company-lua luarocks lua-mode tao-theme all-the-icons-dired haxe-imports haxe-mode gruvbox-theme meghanada typescript tide stack-mode company-cmake company-c-headers flycheck-elixir alchemist haskell-tab-indent flycheck-haskell haskell-emacs xkcd w3m company-erlang ag flycheck window-numbering elpy multi-term elm-mode doom-themes slime use-package fiplr flycheck-rust flycheck-ycmd flycheck-ocaml flycheck-clojure markdown-mode+ god-mode color-theme-sanityinc-solarized evil-surround evil-nerd-commenter evil-leader haskell-mode rjsx-mode company-tern relative-line-numbers clojurescript-mode racket-mode helm omnisharp haml-mode company-flow eslint-fix autopair yasnippet web-mode tagedit scss-mode rustfmt rust-mode ruby-tools ruby-end ruby-dev ruby-block ruby-additional rubocop rsense robe rbenv rainbow-mode rainbow-delimiters projectile powerline popup neotree monokai-theme macrostep jsx-mode js2-mode javascript highlight-indentation go-mode exec-path-from-shell evil epc enh-ruby-mode doremi company-ycmd company-inf-ruby color-theme-solarized color-theme-sanityinc-tomorrow color-theme-monokai clojure-mode-extra-font-locking cider))))
+=======
+    (magit flymake-rust flymake-lua company-lua luarocks lua-mode tao-theme all-the-icons-dired haxe-imports haxe-mode gruvbox-theme meghanada typescript tide stack-mode company-cmake company-c-headers flycheck-elixir alchemist haskell-tab-indent flycheck-haskell haskell-emacs xkcd w3m company-erlang ag flycheck window-numbering elpy multi-term elm-mode doom-themes slime use-package fiplr flycheck-rust flycheck-ycmd flycheck-ocaml flycheck-clojure markdown-mode+ god-mode color-theme-sanityinc-solarized evil-magit evil-surround evil-nerd-commenter evil-leader haskell-mode rjsx-mode company-tern relative-line-numbers clojurescript-mode racket-mode helm omnisharp haml-mode company-flow eslint-fix autopair yasnippet web-mode tagedit starter-kit-ruby scss-mode rustfmt rust-mode ruby-tools ruby-end ruby-dev ruby-block ruby-additional rubocop rsense robe rbenv rainbow-mode rainbow-delimiters projectile powerline popup neotree monokai-theme macrostep jsx-mode js2-mode javascript highlight-indentation go-mode exec-path-from-shell evil epc enh-ruby-mode doremi company-ycmd company-inf-ruby color-theme-solarized color-theme-sanityinc-tomorrow color-theme-monokai clojure-mode-extra-font-locking cider))))
+>>>>>>> af717ac1287fe70c8bb00a8e2683f9181c587d16
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
