@@ -23,15 +23,27 @@
 
 (autopair-global-mode)
 
+;; Folding
+(require 'yafolding)
+(yafolding-mode 1)
+
 ;; JSX w/ Flow
 (require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+(global-set-key (kbd "C-c <tab>") 'company-complete)
+
 (require 'web-mode)
+
+
+;; Case sensitive company mode
+(setq company-dabbrev-downcase nil)
 
 ;; flow auto complete
 ;; skip this if you don't use company-mode
 (with-eval-after-load 'company
   ;; '(add-to-list 'company-backends 'company-flow)
-  '(add-to-list 'company-backends 'company-tern))
+  '(add-to-list 'company-backends 'company-tern)
+  '(add-to-list 'company-backends 'company-go))
 
 
 ;; disable jshint since we prefer eslint checking
@@ -77,25 +89,6 @@
           (setq flycheck-eslintrc rc-path)))))
 
 (add-hook 'flycheck-mode-hook 'my/use-eslint-from-node-modules)
-;;(add-hook 'flycheck-mode-hook 'codefalling/reset-eslint-rc)
-
-
-;; YouCompleteMe for Company mode
-;;(require 'ycmd)
-;;(add-hook 'after-init-hook #'global-ycmd-mode)
-
-;;(require 'company-ycmd)
-;;(company-ycmd-setup)
-;;(set-variable 'ycmd-server-command '("python" "/Users/jamessral/ycmd/ycmd"))
-
-;; Web Mode
-;; for better jsx syntax-highlighting in web-mode
-;; - courtesy of Patrick @halbtuerke
-;; (defadvice web-mode-highlight-part (around tweak-jsx activate)
-;;   (if (equal web-mode-content-type "jsx")
-;;     (let ((web-mode-enable-part-face nil))
-;;       ad-do-it)
-;;     ad-do-it))
 
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
@@ -122,18 +115,9 @@
 (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js$" . web-mode))
 
-
-
 ;; Rainbow Mode hooks
 (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
 (add-hook 'racket-mode-hook #'rainbow-delimiters-mode)
-
-
-;; SCSS Mode
-;; (autoload 'scss-mode "scss-mode")
-;; (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
-;; Ruby Stuffs
-
 
 ;; Python
 (elpy-enable)
@@ -143,35 +127,26 @@
 (add-hook 'python-mode-hook 'my/python-mode-hook)
 
 ;; Go Stuffs
-
 (defun my-go-mode-hook ()
   ; Use goimports instead of go-fmt
   (require 'go-autocomplete)
-  (when (memq window-system '(mac ns))
-    (exec-path-from-shell-initialize)
-    (exec-path-from-shell-copy-env "GOPATH"))
-
+  (require 'company-go)
   (setq gofmt-command "goimports")
   (setq tab-width 4)
-  (lambda ()
-    (set (make-local-variable 'company-backends) '(company-go))
-    (company-mode))
   ; Call Gofmt before saving
   (add-hook 'before-save-hook 'gofmt-before-save)
   ; Customize compile command to run go build
  (if (not (string-match "go" compile-command))
       (set (make-local-variable 'compile-command)
            "go generate && go build -v && go test -v && go vet"))
-  ; Go oracle
-  (load-file "~/go/src/golang.org/x/tools/cmd/oracle/oracle.el")
   ; Godef jump key binding
   (local-set-key (kbd "M-.") 'godef-jump)
   (local-set-key (kbd "M-*") 'pop-tag-mark)
+  (lambda ()
+    (set (make-local-variable 'company-backends) '(company-go))
+    (company-mode))
 )
 (add-hook 'go-mode-hook 'my-go-mode-hook)
-
-;; Rust
-;; (add-hook 'rust-mode-hook #'enable-paredit-mode)
 
 ;; Interactive search key bindings. By default, C-s runs
 ;; isearch-forward, so this swaps the bindings.

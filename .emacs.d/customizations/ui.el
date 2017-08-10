@@ -9,12 +9,7 @@
 (tool-bar-mode -1)
 ;; Show line numbers
 (global-linum-mode)
-
-;; You can uncomment this to remove the graphical toolbar at the top. After
-;; awhile, you won't need the toolbar.
-;; (when (fboundp 'tool-bar-mode)
-;;   (tool-bar-mode -1))
-
+(setq linum-format "%d ")
 ;; Don't show native OS scroll bars for buffers because they're redundant
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
@@ -26,8 +21,9 @@
 ;; for a more technical explanation.
 ;; Powerline must be added before Moe theme
 ;; (add-to-list 'load-path "~/.emacs.d/elpy/")
-(require 'powerline)
-(powerline-default-theme)
+
+;;(require 'powerline)
+;;(powerline-default-theme)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (add-to-list 'load-path "~/.emacs.d/themes")

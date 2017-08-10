@@ -697,11 +697,7 @@
 	     ((:url . "https://github.com/michael-heerdegen/on-screen.el")
 	      (:keywords "convenience"))])
  (org .
-<<<<<<< HEAD
-      [(20170731)
-=======
-      [(20170724)
->>>>>>> af717ac1287fe70c8bb00a8e2683f9181c587d16
+      [(20170807)
        nil "Outline-based notes management and organizer" tar nil])
  (org-edna .
 	   [(1 0 -3 1)
@@ -871,11 +867,7 @@
 	       ((:keywords "soap" "web-services" "comm" "hypermedia")
 		(:url . "http://elpa.gnu.org/packages/soap-client.html"))])
  (sokoban .
-<<<<<<< HEAD
 	  [(1 4 5)
-=======
-	  [(1 4 4)
->>>>>>> af717ac1287fe70c8bb00a8e2683f9181c587d16
 	   nil "Implementation of Sokoban for Emacs." tar
 	   ((:keywords "games")
 	    (:url . "http://elpa.gnu.org/packages/sokoban.html"))])
