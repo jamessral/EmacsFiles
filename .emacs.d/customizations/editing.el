@@ -23,98 +23,46 @@
 
 (autopair-global-mode)
 
+;; Use Key Chords
+(require 'key-chord)
+(key-chord-mode 1)
+
+;; Snippets
+(require 'yasnippet)
+(yas-global-mode 1)
+
+
+;; Expand Region
+(require 'expand-region)
+(global-set-key (kbd "C-@") 'er/expand-region)
+
+;; Multiple Cursors
+(require 'multiple-cursors)
+(global-set-key (kbd "C-c C-l") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C->") 'mc/mark-next-like-this-word)
+(global-set-key (kbd "C-c C-<") 'mc/mark-previous-like-this-word)
+
 ;; Folding
 (require 'yafolding)
 (yafolding-mode 1)
 
-;; JSX w/ Flow
-(require 'company)
-(add-hook 'after-init-hook 'global-company-mode)
-(global-set-key (kbd "C-c <tab>") 'company-complete)
+;; Add yasnippet support for all company backends
+;; https://github.com/syl20bnr/spacemacs/pull/179
+;; (defvar company-mode/enable-yas t
+;;   "Enable yasnippet for all backends.")
 
-(require 'web-mode)
+;; (defun company-mode/backend-with-yas (backend)
+;;   (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+;;       backend
+;;     (append (if (consp backend) backend (list backend))
+;;             '(:with company-yasnippet))))
 
-
-;; Case sensitive company mode
-(setq company-dabbrev-downcase nil)
-
-;; flow auto complete
-;; skip this if you don't use company-mode
-(with-eval-after-load 'company
-  ;; '(add-to-list 'company-backends 'company-flow)
-  '(add-to-list 'company-backends 'company-tern)
-  '(add-to-list 'company-backends 'company-go))
+;; (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 
 
-;; disable jshint since we prefer eslint checking
-(setq-default flycheck-disabled-checkers
-  (append flycheck-disabled-checkers
-    '(javascript-jshint)))
-
-;; customize flycheck temp file prefix
-(setq-default flycheck-temp-prefix ".flycheck")
-
-;; disable json-jsonlist checking for json files
-(setq-default flycheck-disabled-checkers
-  (append flycheck-disabled-checkers
-    '(json-jsonlist)))
-
-;; https://github.com/purcell/exec-path-from-shell
-;; only need exec-path-from-shell on OSX
-;; this hopefully sets up path and other vars better
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
-
-(flycheck-add-mode 'javascript-eslint 'web-mode)
-;;(flycheck-add-mode 'javascript-flow 'web-mode)
-
-;; use local eslint from node_modules before global
-;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
-(defun my/use-eslint-from-node-modules ()
-  (let* ((root (locate-dominating-file
-                (or (buffer-file-name) default-directory)
-                "node_modules"))
-         (eslint (and root
-                      (expand-file-name "node_modules/eslint/bin/eslint.js"
-                                        root))))
-    (when (and eslint (file-executable-p eslint))
-      (setq-local flycheck-javascript-eslint-executable eslint))))
-
-(defun codefalling/reset-eslint-rc ()
-    (let ((rc-path (if (projectile-project-p)
-                       (concat (projectile-project-root) ".eslintrc"))))
-      (if (file-exists-p rc-path)
-          (progn
-            (message rc-path)
-          (setq flycheck-eslintrc rc-path)))))
-
-(add-hook 'flycheck-mode-hook 'my/use-eslint-from-node-modules)
-
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
-(add-hook 'web-mode-hook (setq web-mode-markup-indent-offset 2))
-(add-hook 'web-mode-hook (setq web-mode-code-indent-offset 2))
-(add-hook 'web-mode-hook (setq web-mode-css-indent-offset 2))
-(add-hook 'web-mode-hook #'rainbow-delimiters-mode)
-
-;; always use jsx mode for JS
-(add-hook 'web-mode-hook
-      (lambda ()
-        ;; short circuit js mode and just do everything in jsx-mode
-        (if (equal web-mode-content-type "javascript")
-            (web-mode-set-content-type "jsx")
-          (message "now set to: %s" web-mode-content-type))))
-
-;; use web-mode for .jsx files
-(add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.js$" . web-mode))
-
+;; (add-hook 'web-mode-hook #'rainbow-delimiters-mode)
 ;; Rainbow Mode hooks
 (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
 (add-hook 'racket-mode-hook #'rainbow-delimiters-mode)
@@ -125,28 +73,6 @@
   (add-to-list 'company-backends 'company-jedi))
 
 (add-hook 'python-mode-hook 'my/python-mode-hook)
-
-;; Go Stuffs
-(defun my-go-mode-hook ()
-  ; Use goimports instead of go-fmt
-  (require 'go-autocomplete)
-  (require 'company-go)
-  (setq gofmt-command "goimports")
-  (setq tab-width 4)
-  ; Call Gofmt before saving
-  (add-hook 'before-save-hook 'gofmt-before-save)
-  ; Customize compile command to run go build
- (if (not (string-match "go" compile-command))
-      (set (make-local-variable 'compile-command)
-           "go generate && go build -v && go test -v && go vet"))
-  ; Godef jump key binding
-  (local-set-key (kbd "M-.") 'godef-jump)
-  (local-set-key (kbd "M-*") 'pop-tag-mark)
-  (lambda ()
-    (set (make-local-variable 'company-backends) '(company-go))
-    (company-mode))
-)
-(add-hook 'go-mode-hook 'my-go-mode-hook)
 
 ;; Interactive search key bindings. By default, C-s runs
 ;; isearch-forward, so this swaps the bindings.

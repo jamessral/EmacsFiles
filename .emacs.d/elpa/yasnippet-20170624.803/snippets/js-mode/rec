@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+#name : rec class extends component
+# --
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
+class $1 extends Component {
+  render() {
+
+  }
+}
+
+$1.propTypes = {}

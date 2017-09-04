@@ -1,4 +1,5 @@
 (
+ (:id "sha1:679f351e9911cb0b6c10683d687e24b33b188f00" :fingerprint "sha1:fd:6a:4e:b8:ac:90:72:93:23:f4:9e:c7:5c:66:1d:a2:87:c2:ed:14" :host "developer.mozilla.org:443" :conditions (:insecure :unknown-ca :invalid))
  (:id "sha1:e1b772f1e476feb30169973c89c6cf34069f208d" :fingerprint "sha1:7e:b0:e1:12:72:15:47:6a:db:16:97:ac:90:38:a4:8f:86:3f:91:08" :host "love2d.org:443" :conditions (:insecure :unknown-ca :invalid))
  (:id "sha1:c081281e4def54b4036a554678c9750f891a9101" :fingerprint "sha1:f2:64:9e:90:a3:86:12:6a:6c:d6:40:06:d1:1e:16:b8:ad:41:11:0c" :host "imgs.xkcd.com:443" :conditions (:insecure :unknown-ca :invalid))
  (:id "sha1:8c107fc2020fe317e2b05e1377eb61aa8d1a85b3" :fingerprint "sha1:f2:64:9e:90:a3:86:12:6a:6c:d6:40:06:d1:1e:16:b8:ad:41:11:0c" :host "xkcd.com:443" :conditions (:insecure :unknown-ca :invalid))

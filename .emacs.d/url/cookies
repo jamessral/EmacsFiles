@@ -1,0 +1,20 @@
+;; Emacs-W3 HTTP cookies file
+;; Automatically generated file!!! DO NOT EDIT!!!
+
+(setq url-cookie-storage
+ '((".google.com"
+  [url-cookie "NID" "109=rIxAhAuBnmiyRt-X39DswGhYhGHecQI0XQMNE-gnHw2ABbISWxIt_hFMN4dsxPXfpkGMIrua3e6UROvhSP5RZDaJ9HETxly8UyLK8SWVe5_9V1usJtP3kYJZE8L86MR4" "09-Feb-2018 18:14:15.00 GMT" "/" ".google.com" nil]
+  [url-cookie "HttpOnly" nil "09-Feb-2018 18:14:15.00 GMT" "/" ".google.com" nil]))
+)
+(setq url-cookie-secure-storage
+ '(("developer.mozilla.org"
+  [url-cookie "csrftoken" "ljL3ci9o15Gc3jkHsJxbBhGgGQVoB8r4" "09-Aug-2018 18:15:27.00 GMT" "/" "developer.mozilla.org" t]
+  [url-cookie "Max-Age" "2592000" "09-Sep-2017 18:15:27.00 GMT" "/" "developer.mozilla.org" t]
+  [url-cookie "dwf_section_edit" "True" "09-Sep-2017 18:15:27.00 GMT" "/" "developer.mozilla.org" t]
+  [url-cookie "dwf_sg_task_completion" "False" "09-Sep-2017 18:15:27.00 GMT" "/" "developer.mozilla.org" t]))
+)
+
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; End:

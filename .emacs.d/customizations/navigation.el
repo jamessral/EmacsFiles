@@ -42,6 +42,10 @@
 ;; open now
 (setq ido-use-virtual-buffers t)
 
+;; Ace Jump Mode (vim easymotion)
+(require 'ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
 ;; This enables ido in all contexts where it could be useful, not just
 ;; for selecting buffer and file names
 (ido-ubiquitous-mode 1)

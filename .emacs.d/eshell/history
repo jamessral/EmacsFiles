@@ -22,3 +22,17 @@ git fetch && git checkout feature/USDEV-759-previewplay-remove-section-typ
 cd ~
 gem install scss_lint_reporter_checkstyle
 exit
+cd ~/.emacs.d
+cd vendor/
+git clone --recursive https://github.com/joaotavora/yasnippet
+rm -rf yasnippet/
+cd ..
+cd elpa/yasnippet-20170624.803/
+s
+ls
+cd snippets/
+ls
+erl
+exit
+utop
+exit

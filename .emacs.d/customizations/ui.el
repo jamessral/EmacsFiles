@@ -22,12 +22,12 @@
 ;; Powerline must be added before Moe theme
 ;; (add-to-list 'load-path "~/.emacs.d/elpy/")
 
-;;(require 'powerline)
-;;(powerline-default-theme)
+(require 'powerline)
+(powerline-default-theme)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (add-to-list 'load-path "~/.emacs.d/themes")
-(load-theme 'gruvbox-dark-medium t)
+(load-theme 'atom-one-dark t)
 
 ;; Moe Theme
 ;; (add-to-list 'custom-theme-load-path "~/.emacs.d/moe-theme.el/")
@@ -39,8 +39,8 @@
 ;; (powerline-moe-theme)
 ;; (moe-dark)
 ;; increase font size for better readability
-(when (display-graphic-p) (set-face-attribute 'default nil :font "FuraCode Nerd Font"))
-(set-face-attribute 'default nil :height 140)
+(when (display-graphic-p) (set-face-attribute 'default nil :font "SauceCodePro Nerd Font"))
+(set-face-attribute 'default nil :height 130)
 
 ;; Uncomment the lines below by removing semicolons and play with the
 ;; values in order to set the width (in characters wide) and height
