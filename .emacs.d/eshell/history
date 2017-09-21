@@ -36,3 +36,4 @@ erl
 exit
 utop
 exit
+brew install offlineimap

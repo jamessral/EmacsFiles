@@ -1,0 +1,3 @@
+[submodule ".emacs.d/flow-for-emacs"]
+	path = .emacs.d/flow-for-emacs
+	url = https://github.com/flowtype/flow-for-emacs.git

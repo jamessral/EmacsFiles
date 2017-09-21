@@ -7,10 +7,18 @@
 
 (require 'web-mode)
 
-;; flow auto complete
+;; Flow Type
+(add-hook 'web-mode-hook 'flow-minor-enable-automatically)
+
+;; Flow keybindings
+(add-hook 'web-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-c t") 'flow-type-at-pos)))
+
+
 ;; skip this if you don't use company-mode
 (with-eval-after-load 'company
-  ;; '(add-to-list 'company-backends 'company-flow)
+  '(add-to-list 'company-backends 'company-flow)
   '(add-to-list 'company-backends 'company-tern)
   '(add-to-list 'company-backends 'company-go))
 
@@ -22,13 +30,9 @@
   (append flycheck-disabled-checkers
     '(javascript-jshint)))
 
+
 ;; customize flycheck temp file prefix
 (setq-default flycheck-temp-prefix ".flycheck")
-
-;; disable json-jsonlist checking for json files
-(setq-default flycheck-disabled-checkers
-  (append flycheck-disabled-checkers
-    '(json-jsonlist)))
 
 ;; https://github.com/purcell/exec-path-from-shell
 ;; only need exec-path-from-shell on OSX
@@ -79,6 +83,7 @@
 (add-hook 'web-mode-hook (setq web-mode-markup-indent-offset 2))
 (add-hook 'web-mode-hook (setq web-mode-code-indent-offset 2))
 (add-hook 'web-mode-hook (setq web-mode-css-indent-offset 2))
+
 ;; use web-mode for .jsx files
 (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js$" . web-mode))

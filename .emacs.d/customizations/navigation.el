@@ -19,6 +19,8 @@
 (recentf-mode 1)
 (setq recentf-max-menu-items 40)
 
+;; Use the super fast FZF
+(global-set-key (kbd "C-c z") 'fzf)
 
 ;; ido-mode allows you to more easily navigate choices. For example,
 ;; when you want to switch buffers, ido presents you with a list
@@ -43,8 +45,15 @@
 (setq ido-use-virtual-buffers t)
 
 ;; Ace Jump Mode (vim easymotion)
-(require 'ace-jump-mode)
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+;;(require 'ace-jump-mode)
+;;(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
+;; Avy mode (vim easymotion-esque)
+(require 'avy)
+(global-set-key (kbd "C-:") 'avy-goto-char)
+(global-set-key (kbd "C-'") 'avy-goto-char-2)
+(global-set-key (kbd "M-g f") 'avy-goto-line)
+(global-set-key (kbd "M-g w") 'avy-goto-word-1)
 
 ;; This enables ido in all contexts where it could be useful, not just
 ;; for selecting buffer and file names

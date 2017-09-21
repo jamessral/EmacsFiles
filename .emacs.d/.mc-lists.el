@@ -5,6 +5,7 @@
       '(
         isearch-forward-regexp
         isearch-printing-char
+        paredit-backward-kill-word
         paredit-forward-delete
         ))
 

@@ -1,4 +1,4 @@
-;;;
+;;
 ;; Packages
 ;;;;
 
@@ -52,25 +52,18 @@
     ;; integration with a Clojure REPL
     ;; https://github.com/clojure-emacs/cider
     ;; cider
-    omnisharp
     ruby-mode
     js2-mode
     web-mode
     autopair
     company
     multi-term
-    evil
-    merlin
-    ocp-indent
     go-mode
-    rust-mode
-    clojurescript-mode
-    cider
-    clojure-mode
-    racket-mode
-    rustfmt
     paredit
+    helm
+    avy
     slime
+    multiple-cursors
     ;; allow ido usage in as many contexts as possible. see
     ;; customizations/navigation.el line 23 for a description
     ;; of ido
@@ -135,6 +128,8 @@
 ;; below, Emacs knows where to look for the corresponding file.
 (add-to-list 'load-path "~/.emacs.d/customizations")
 
+(set-frame-parameter nil 'fullscreen 'fullboth)
+
 ;; Sets up exec-path-from-shell so that Emacs will use the correct
 ;; environment variables
 (load "shell-integration.el")
@@ -142,8 +137,19 @@
 ;; These customizations make editing a bit nicer.
 ;; (load "vim.el")
 
+(setq make-backup-files nil) ; stop creating backup~ files
+(setq auto-save-default nil) ; stop creating #autosave# files
+
+
+;; Email
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu/mu4e/")
+;;(require 'mu4e)
+
 ;; Show tabs as 4 spaces
 (setq tab-width 4)
+
+;; Flow
+(load-file "~/.emacs.d/flow-for-emacs/flow.el")
 
 (load "editing.el")
 
@@ -157,9 +163,18 @@
 
 (load "jsconfig.el")
 
+;;(load "java.el")
+(elpy-enable)
+(load "python-config.el")
+
+(load "ruby.el")
+
+;;(load "purescript.el")
+
 (load "golang.el")
 
-(load "rust.el")
+;;(load "rust.el")
+
 ;; Love2d
 (load "love2d.el")
 ;; Hard-to-categorize customizations
@@ -173,7 +188,7 @@
 ;; (load "setup-clojure.el")
 
 ;; Godot Script
-(load "gdscript.el")
+;;(load "gdscript.el")
 
 
 (custom-set-variables
@@ -192,7 +207,7 @@
  '(magit-use-overlays nil)
  '(package-selected-packages
    (quote
-    (tuareg flymake-ruby atom-one-dark-theme company-racer restclient railscasts-theme molokai-theme ace-jump-mode key-chord multiple-cursors expand-region yafolding slack utop yasnippet-bundle magit gited git company-go go-autocomplete flymake-rust flymake-lua company-lua luarocks lua-mode tao-theme all-the-icons-dired haxe-imports haxe-mode gruvbox-theme meghanada typescript tide stack-mode company-cmake company-c-headers flycheck-elixir alchemist haskell-tab-indent flycheck-haskell haskell-emacs xkcd w3m company-erlang ag flycheck window-numbering elpy multi-term elm-mode doom-themes slime use-package fiplr flycheck-rust flycheck-ycmd flycheck-ocaml flycheck-clojure markdown-mode+ god-mode color-theme-sanityinc-solarized evil-surround evil-nerd-commenter evil-leader haskell-mode rjsx-mode company-tern relative-line-numbers clojurescript-mode racket-mode helm omnisharp haml-mode company-flow eslint-fix autopair yasnippet web-mode tagedit scss-mode rustfmt rust-mode ruby-tools ruby-end ruby-dev ruby-block ruby-additional rubocop rsense robe rbenv rainbow-mode rainbow-delimiters projectile powerline popup neotree monokai-theme macrostep jsx-mode js2-mode javascript highlight-indentation go-mode exec-path-from-shell evil epc enh-ruby-mode doremi company-ycmd company-inf-ruby color-theme-solarized color-theme-sanityinc-tomorrow color-theme-monokai clojure-mode-extra-font-locking cider)))
+    (company-jedi avy fzf eyebrowse flow-minor-mode flycheck-flow wrap-region mu4e-alert rinari ruby-test-mode seeing-is-believing psc-ide flycheck-purescript purescript-mode flymake-ruby atom-one-dark-theme company-racer restclient railscasts-theme molokai-theme key-chord multiple-cursors expand-region yafolding slack utop yasnippet-bundle magit gited git company-go go-autocomplete flymake-rust flymake-lua company-lua luarocks lua-mode tao-theme all-the-icons-dired haxe-imports haxe-mode gruvbox-theme meghanada typescript tide stack-mode company-cmake company-c-headers flycheck-elixir alchemist haskell-tab-indent flycheck-haskell haskell-emacs xkcd w3m company-erlang ag flycheck window-numbering elpy multi-term elm-mode doom-themes slime use-package fiplr flycheck-rust flycheck-ycmd flycheck-ocaml flycheck-clojure markdown-mode+ god-mode color-theme-sanityinc-solarized evil-surround evil-nerd-commenter evil-leader haskell-mode rjsx-mode company-tern relative-line-numbers clojurescript-mode racket-mode helm omnisharp haml-mode company-flow eslint-fix autopair yasnippet web-mode tagedit scss-mode rustfmt rust-mode ruby-tools ruby-end ruby-dev ruby-block ruby-additional rubocop rsense robe rbenv rainbow-mode rainbow-delimiters projectile powerline popup neotree monokai-theme macrostep jsx-mode js2-mode javascript highlight-indentation go-mode exec-path-from-shell evil epc enh-ruby-mode doremi company-ycmd company-inf-ruby color-theme-solarized color-theme-sanityinc-tomorrow color-theme-monokai clojure-mode-extra-font-locking cider)))
  '(yas-global-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

@@ -1,0 +1,19 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Thu Sep 14 21:39:10 2017
+;; Desktop file format version 208
+;; Emacs version 25.2.1
+
+;; Global section:
+(setq desktop-saved-frameset [frameset 1 (22971 12094 818182 0) (desktop . "208") "jamessral@Jamess-MBP.attlocal.net" nil nil ((((font-backend mac-ct) (fontsize . 0) (font . "-*-SauceCodePro Nerd Font-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1") (border-width . 0) (internal-border-width . 2) (vertical-scroll-bars) (horizontal-scroll-bars) (foreground-color . "#fdf4c1") (background-color . "#282828") (line-spacing) (left-fringe . 8) (right-fringe . 8) (menu-bar-lines . 0) (tool-bar-lines . 0) (title) (icon-type) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 0) (scroll-bar-height . 0) (alpha) (fullscreen . fullboth) (display-type . color) (background-mode . dark) (cursor-color . "#fdf4c1") (environment) (powerline-cache) (frameset--id . "2A77-7306-DB72-6F75") (frameset--mini t . t) (height . 61) (width . 207) (modeline . t) (minibuffer . t) (unsplittable) (left . 2) (top . 5) (right-divider-width . 0) (bottom-divider-width . 0) (icon-name) (visibility . t) (display . "Jamess-MBP.attlocal.net") (explicit-name) (tool-bar-position . top)) ((min-height . 8) (min-width . 10) (min-height-ignore . 4) (min-width-ignore . 6) (min-height-safe . 2) (min-width-safe . 2) (min-pixel-height . 136) (min-pixel-width . 80) (min-pixel-height-ignore . 68) (min-pixel-width-ignore . 48) (min-pixel-height-safe . 34) (min-pixel-width-safe . 16)) vc (pixel-width . 1672) (pixel-height . 1020) (total-width . 209) (total-height . 60) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 1672) (pixel-height . 765) (total-width . 209) (total-height . 45) (normal-height . 0.7547619047619051) (normal-width . 1.0) (buffer "*scratch*" (selected . t) (hscroll . 0) (fringes 8 8 nil) (margins 2) (scroll-bars nil 0 t nil 0 nil) (vscroll . 0) (dedicated) (point . 146) (start . 1))) (leaf (last . t) (pixel-width . 1672) (pixel-height . 255) (total-width . 209) (total-height . 15) (normal-height . 0.2452380952380952) (normal-width . 1.0) (buffer "*terminal<3>*" (selected) (hscroll . 0) (fringes 8 8 nil) (margins 2) (scroll-bars nil 0 t nil 0 nil) (vscroll . 0) (dedicated) (point . 58) (start . 1)))))])
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring nil)
+(setq regexp-search-ring nil)
+(setq register-alist nil)
+(setq file-name-history '("~/.emacs.d/desktops/" "~/workspace/understory-web/" "~/.emacs.d/ido.last" "~/.emacs.d/init.el" "~/.emacs.d/customizations/jsconfig.el" "~/.zshrc" "~/workspace/understory-web/src/containers/Facilitator/FacilitatorConversationDashboard/FacilitatorConversationDashboard.js" "~/workspace/understory-web/.eslintrc" "~/.emacs.d/elpa/flow-minor-mode-20170729.1008/flow-minor-mode-autoloads.el" "~/.emacs.d/customizations/editing.el" "~/.emacs.d/elpa/flycheck-flow-20170604.811/flycheck-flow-autoloads.el" "~/workspace/understory-web/.babelrc" "~/workspace/understory-platform/src/main/java/com/understoryonline/service/activity/ActivityServiceImpl.java" "~/workspace/understory-platform/src/main/java/com/understoryonline/service/firebase/FirebaseService.java" "~/.emacs.d/elpa/wrap-region-20140116.2320/wrap-region-autoloads.el" "~/.offlineimaprc" "~/workspace/understory-platform/src/main/java/com/understoryonline/domain/activity/Activity.java" "~/.emacs.d/customizations/python.el" "~/.emacs.d/customizations/java.el" "~/Org/todo.org"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:

@@ -67,13 +67,6 @@
 (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
 (add-hook 'racket-mode-hook #'rainbow-delimiters-mode)
 
-;; Python
-(elpy-enable)
-(defun my/python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
-
-(add-hook 'python-mode-hook 'my/python-mode-hook)
-
 ;; Interactive search key bindings. By default, C-s runs
 ;; isearch-forward, so this swaps the bindings.
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)

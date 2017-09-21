@@ -1,4 +1,10 @@
 (
+ (:id "sha1:379522f41fcdf5d279b33c30780e7512c9348430" :fingerprint "sha1:d4:ee:9d:2a:67:12:b3:61:4c:27:2d:15:8b:04:fc:c8:ca:08:a0:b6" :host "github.com:443" :conditions (:insecure :unknown-ca :invalid))
+ (:id "sha1:85b31c268009209a8d3c5387033b219264f7e62b" :fingerprint "sha1:1e:cd:2c:2d:db:40:37:11:a1:0b:8f:5f:a9:98:cf:3b:72:a9:61:b6" :host "melpa.org:443" :conditions (:insecure :unknown-ca :invalid))
+ (:id "sha1:d6d4661088614a1368486aef36a333a7b4db3999" :fingerprint "sha1:fe:a8:57:30:38:d1:e0:0d:36:21:9f:7a:87:8a:6a:d4:05:4a:fb:4a" :host "www.emacswiki.org:443" :conditions (:insecure :unknown-ca :invalid))
+ (:id "sha1:bd3cfd363b80a3bede7578edde9abf90d773679e" :fingerprint "sha1:03:ef:92:d3:17:b0:c8:f0:e1:bb:f2:7e:4d:b5:e4:13:06:7e:56:56" :host "www.reddit.com:443" :conditions (:insecure :unknown-ca :invalid))
+ (:id "sha1:b80ea2d30453d506b8287c875d8a9d57a43e3022" :fingerprint "sha1:a1:0f:7e:29:70:3f:34:bb:2a:fa:99:b6:8d:02:be:3f:3b:65:78:20" :host "akamai.bintray.com:443" :conditions (:insecure :unknown-ca :invalid))
+ (:id "sha1:61621369258fc4621a06a39deafa8c1b609fa964" :fingerprint "sha1:3c:83:e2:9a:ac:96:fa:61:13:07:02:4f:ac:93:e6:f7:7f:aa:97:d5" :host "dl.bintray.com:443" :conditions (:insecure :unknown-ca :invalid))
  (:id "sha1:679f351e9911cb0b6c10683d687e24b33b188f00" :fingerprint "sha1:fd:6a:4e:b8:ac:90:72:93:23:f4:9e:c7:5c:66:1d:a2:87:c2:ed:14" :host "developer.mozilla.org:443" :conditions (:insecure :unknown-ca :invalid))
  (:id "sha1:e1b772f1e476feb30169973c89c6cf34069f208d" :fingerprint "sha1:7e:b0:e1:12:72:15:47:6a:db:16:97:ac:90:38:a4:8f:86:3f:91:08" :host "love2d.org:443" :conditions (:insecure :unknown-ca :invalid))
  (:id "sha1:c081281e4def54b4036a554678c9750f891a9101" :fingerprint "sha1:f2:64:9e:90:a3:86:12:6a:6c:d6:40:06:d1:1e:16:b8:ad:41:11:0c" :host "imgs.xkcd.com:443" :conditions (:insecure :unknown-ca :invalid))
